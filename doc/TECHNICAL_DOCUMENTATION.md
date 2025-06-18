@@ -12,13 +12,13 @@ Este projeto é uma aplicação mobile desenvolvida com Ionic 8 e Angular, que c
 - SCSS para estilização
 ## Estrutura de Pastas
 >> src/app/ (Raiz)
-# Componentes reutilizáveis como menu lateral
+### Componentes reutilizáveis como menu lateral
 >> components/
-# Páginas principais (home, detalhes, favoritos)
+### Páginas principais (home, detalhes, favoritos)
 >> pages/
-# Serviços (Comunicação com a API & Favoritos - Storage)
+### Serviços (Comunicação com a API & Favoritos - Storage)
 >> services/
-# Rotas utilizadas na aplicação
+### Rotas utilizadas na aplicação
 >> app.routes.ts     
 ## Páginas
 - HomePage: Lista os Pokémons com botão de favoritar, menu lateral e busca.
