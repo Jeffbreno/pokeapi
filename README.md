@@ -16,6 +16,7 @@ Você precisa ter o [Node.js](https://nodejs.org/pt) e o Ionic CLI instalados:
 
 ## 2. Clone o repositório
 >> git clone git@github.com:Jeffbreno/pokeapi.git
+
 >> cd pokeapi 
 
 ## 3. Instale as dependências
@@ -23,6 +24,9 @@ Você precisa ter o [Node.js](https://nodejs.org/pt) e o Ionic CLI instalados:
 
 ## 4. Rode a aplicação
 >> ionic serve
+
+## Demonstração
+![Demonstrativo do App](docs/media/demonstrativoSimples.gif)
 
 # Considerações
 O projeto foi criado para exemplificar domínio do framework ionic com angular
