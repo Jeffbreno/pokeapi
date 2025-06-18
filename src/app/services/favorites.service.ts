@@ -14,7 +14,9 @@ export interface PokemonFavorite {
 export class FavoritesService {
   private _storage: Storage | null = null;
 
-  constructor(private storage: Storage) {}
+  constructor(private storage: Storage) {
+    this.init();
+  }
 
   /**
    * Inicializa o armazenamento local
