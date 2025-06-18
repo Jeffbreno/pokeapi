@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pokemonDetails?.name | titlecase }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFavorite()">
+        <ion-icon
+          [name]="isFavorite ? 'heart' : 'heart-outline'"
+          color="danger"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="pokemonDetails">
+  <ion-card class="ion-text-center">
+    <img
+      [src]="pokemonDetails.sprites?.other?.['official-artwork']?.front_default || pokemonDetails.sprites.front_default"
+      [alt]="pokemonDetails.name"
+      style="max-width: 200px; margin: auto;"
+    />
+    <ion-card-content>
+      <p>{{ pokemonDetails.flavorText }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <strong>Altura:</strong> {{ pokemonDetails.height / 10 }} m
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <strong>Peso:</strong> {{ pokemonDetails.weight / 10 }} kg
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <strong>Experiência base:</strong> {{ pokemonDetails.base_experience }}
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <strong>Tipos:</strong>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-chip
+          *ngFor="let t of pokemonDetails.types"
+          [style.background]="getTypeColor(t.type.name)"
+          color="light"
+        >
+          {{ t.type.name | titlecase }}
+        </ion-chip>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <strong>Habilidades:</strong>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-chip *ngFor="let ab of pokemonDetails.abilities" color="medium">
+          {{ ab.ability.name | titlecase }}
+        </ion-chip>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

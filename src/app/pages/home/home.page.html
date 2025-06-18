@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pokédex</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let pokemon of pokemons" (click)="openDetails(pokemon)">
+      <ion-avatar slot="start">
+        <img [src]="pokemon.image" [alt]="pokemon.name" />
+      </ion-avatar>
+
+      <ion-label>
+        <h2>{{ pokemon.name | titlecase }}</h2>
+      </ion-label>
+
+      <ion-button
+        fill="clear"
+        slot="end"
+        (click)="toggleFavorite(pokemon); $event.stopPropagation()"
+        [color]="pokemon.isFavorite ? 'danger' : 'medium'"
+      >
+        <ion-icon
+          slot="icon-only"
+          [name]="pokemon.isFavorite ? 'heart' : 'heart-outline'"
+        ></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Paginação: Infinite Scroll -->
+  <ion-infinite-scroll (ionInfinite)="loadPokemons($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Carregando mais Pokémons..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
