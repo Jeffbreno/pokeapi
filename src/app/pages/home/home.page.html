@@ -1,10 +1,25 @@
+<!-- Menu lateral -->
+<app-menu></app-menu>
+
+<!-- Header da Pag. -->
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Pokédex</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="searchTerm"
+      (ionInput)="searchPokemons()"
+      placeholder="Buscar Pokémon"
+    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<!-- Conteudo da Pag. -->
+<ion-content id="main-content">
   <ion-list>
     <ion-item *ngFor="let pokemon of pokemons" (click)="openDetails(pokemon)">
       <ion-avatar slot="start">
@@ -29,7 +44,8 @@
     </ion-item>
   </ion-list>
 
-  <!-- Paginação: Infinite Scroll -->
+  <!-- Paginação: Infinite Scroll com este tipo de paginação 
+   sempre que chegar ao fim da tela ele carrega mais pokemons (achei mais pratico)-->
   <ion-infinite-scroll (ionInfinite)="loadPokemons($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"

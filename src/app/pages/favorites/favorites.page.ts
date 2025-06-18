@@ -6,13 +6,14 @@ import {
   FavoritesService,
   PokemonFavorite,
 } from '../../services/favorites.service';
+import { MenuComponent } from 'src/app/components/menu.component';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule],
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
+  imports: [IonicModule, CommonModule, RouterModule, MenuComponent],
 })
 export class FavoritesPage {
   favorites: PokemonFavorite[] = [];

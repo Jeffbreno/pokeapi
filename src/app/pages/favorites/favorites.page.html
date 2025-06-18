@@ -1,10 +1,16 @@
+<!-- Menu lateral -->
+<app-menu></app-menu>
+
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Favoritos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="main-content">
   <ion-list *ngIf="favorites.length > 0; else noFavorites">
     <ion-item *ngFor="let pokemon of favorites" (click)="openDetails(pokemon)">
       <ion-avatar slot="start">

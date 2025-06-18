@@ -1,56 +1,29 @@
-# PokeApp - Aplicativo Pokémon com Ionic e Angular
+# Pokédex Ionic
+Aplicativo desenvolvido com Ionic 8 + Angular 19 que consome a [PokeAPI](https://pokeapi.co/) para exibir uma lista paginada de Pokémons, com possibilidade de ver detalhes e marcar como favoritos. Interface responsiva com busca por nome, menu lateral e armazenamento local.
 
-[![Ionic Version](https://img.shields.io/badge/Ionic-8.0.0-3880FF.svg)](https://ionicframework.com/)
-[![Angular Version](https://img.shields.io/badge/Angular-19.0.0-DD0031.svg)](https://angular.io/)
+# Funcionalidades
+- Listagem paginada dos Pokémons (foi feito um scroll infinito, para sempre que chegar ao fim da tela ele carregar mais Pokémons na lista).
+- Busca por nome com filtro direto na API (O nome tem que ser exato caso contrário não funciona - isto é um limite da [API](https://pokeapi.co/) ).
+- Tela de detalhes com informações e imagens.
+- Sistema de favoritos com persistência local.
+- Menu lateral para navegação (Interessante para adicionar mais opções futuramente a aplicação além de facilitar navegação do usuário).
+- Interface 100% responsiva com Ionic. (foquei muito numa ideia mais mobile, mas funciona em todas as telas)
 
-## Visão Geral
+# Importante -> Como rodar o projeto
+## 1. Instale os requisitos
+Você precisa ter o [Node.js](https://nodejs.org/pt) e o Ionic CLI instalados:
+>> npm install -g @ionic/cli
 
-Aplicativo móvel que consome a PokeAPI para exibir informações sobre Pokémons, com funcionalidades de listagem, detalhes e favoritos.
+## 2. Clone o repositório
+>> git clone git@github.com:Jeffbreno/pokeapi.git
+>> cd pokeapi 
 
-## Funcionalidades Principais
+## 3. Instale as dependências
+>> npm install
 
-- Listagem de Pokémons com paginação infinita
-- Tela de detalhes com informações completas
-- Sistema de favoritos persistente
-- Interface responsiva para mobile
-- Integração completa com a PokeAPI
+## 4. Rode a aplicação
+>> ionic serve
 
-## Tecnologias Utilizadas
-
-### Dependências Principais
-- ![Ionic](https://img.shields.io/badge/-Ionic-3880FF?logo=ionic&logoColor=white) `@ionic/angular` ^8.0.0
-- ![Angular](https://img.shields.io/badge/-Angular-DD0031?logo=angular&logoColor=white) `@angular/core` ^19.0.0
-- ![RxJS](https://img.shields.io/badge/-RxJS-B7178C?logo=reactivex&logoColor=white) `rxjs` ~7.8.0
-- ![Axios](https://img.shields.io/badge/-Axios-5A29E4?logo=axios&logoColor=white) `axios` ^1.10.0
-- ![Ionic Storage](https://img.shields.io/badge/-Ionic_Storage-3880FF?logo=ionic&logoColor=white) `@ionic/storage-angular` ^4.0.0
-
-### Dependências de Desenvolvimento
-- ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white) `typescript` ~5.6.3
-- ![Jasmine](https://img.shields.io/badge/-Jasmine-8A4182?logo=jasmine&logoColor=white) `jasmine-core` ~5.1.0
-- ![ESLint](https://img.shields.io/badge/-ESLint-4B32C3?logo=eslint&logoColor=white) `eslint` ^9.16.0
-
-## Arquitetura e Padrões
-
-- **Injeção de Dependência**: Todos os serviços são injetados nos componentes
-- **Armazenamento Local**: Uso do `@ionic/storage-angular` para persistência de favoritos
-- **Componentização**: UI dividida em componentes reutilizáveis
-- **Gestão de Estado**: Serviços dedicados para gerenciar o estado da aplicação
-- **Responsividade**: Layout adaptável a diferentes tamanhos de tela
-
-## Como Executar o Projeto
-
-### Pré-requisitos
-- Node.js 18+
-- npm 9+
-- Ionic CLI 8+
-
-### Instalação
-```bash
-# Clonar o repositório
-git clone [URL_DO_REPOSITORIO]
-
-# Instalar dependências
-npm install
-
-# Executar o servidor de desenvolvimento
-ionic serve
+# Considerações
+O projeto foi criado para exemplificar domínio do framework ionic com angular
+Todo os requisitos pedidos da lista foram implementados com foco em clareza, sempre deixei algumas partes principais como os serviços, bem comentado para melhor entendimento do que foi feito

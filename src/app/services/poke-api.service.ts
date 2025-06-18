@@ -1,8 +1,8 @@
 // Serviço responsável pela comunicação com a PokeAPI
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, forkJoin, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -67,6 +67,28 @@ export class PokeApiService {
       details: this.getPokemonDetails(name),
       species: this.getPokemonSpecies(name),
     });
+  }
+
+  /**
+   * Busca um Pokémon pelo nome (exato), retorna dados simplificados
+   * Obs.: Pode retornar null se não encontrar e a api não disponibiliza busca parcial
+   *       então é necessário buscar pelo nome exato
+   * @param name Nome do Pokémon
+   * @returns Observable com objeto do Pokémon ou null se não encontrado
+   */
+  searchPokemonByName(name: string): Observable<any | null> {
+    return this.http.get<any>(`${this.baseUrl}/${name.toLowerCase()}`).pipe(
+      map((data) => {
+        return {
+          name: data.name,
+          id: data.id,
+          image: data.sprites.front_default,
+          types: data.types.map((t: any) => t.type.name),
+        };
+      }),
+      // Se erro, retorna null
+      catchError(() => of(null))
+    );
   }
 
   /**

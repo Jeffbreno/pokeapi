@@ -7,17 +7,27 @@ import {
   PokemonFavorite,
 } from '../../services/favorites.service';
 import { Router, RouterModule } from '@angular/router';
+import { MenuComponent } from '../../components/menu.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
-  imports: [IonicModule, CommonModule, RouterModule],
   styleUrls: ['./home.page.scss'],
+  standalone: true,
+  imports: [
+    IonicModule,
+    CommonModule,
+    RouterModule,
+    MenuComponent,
+    FormsModule,
+  ],
 })
 export class HomePage implements OnInit {
   pokemons: PokemonFavorite[] = [];
   offset = 0;
   limit = 20;
+  searchTerm: string = '';
 
   constructor(
     private pokeApiService: PokeApiService,
@@ -26,7 +36,7 @@ export class HomePage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    await this.favoritesService.init(); // importante para garantir que o storage esteja pronto
+    await this.favoritesService.init();
     this.loadPokemons();
   }
 
@@ -55,5 +65,28 @@ export class HomePage implements OnInit {
 
   openDetails(pokemon: PokemonFavorite) {
     this.router.navigate(['/details', pokemon.name]);
+  }
+
+  searchPokemons() {
+    if (!this.searchTerm.trim()) {
+      // Se busca vazia, recarrega lista inicial
+      this.offset = 0;
+      this.pokemons = [];
+      this.loadPokemons();
+      return;
+    }
+
+    this.pokeApiService
+      .searchPokemonByName(this.searchTerm.toLowerCase())
+      .subscribe(async (pokemon) => {
+        // O serviço deve retornar 1 pokemon ou erro
+        if (pokemon) {
+          // Ajusta se é favorito
+          const isFav = await this.favoritesService.isFavorite(pokemon.name);
+          this.pokemons = [{ ...pokemon, isFavorite: isFav }];
+        } else {
+          this.pokemons = [];
+        }
+      });
   }
 }
